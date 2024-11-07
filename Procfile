@@ -1,1 +1,1 @@
-web: python main.py
+gunicorn voice_ai.wsgi
