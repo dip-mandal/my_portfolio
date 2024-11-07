@@ -5,7 +5,7 @@ document.getElementById("startButton").addEventListener("click", async function(
 
 async function fetchResponse() {
     try {
-        const response = await fetch("http://dipmandal303.pythonanywhere.com/start_voice_assistant");  // Adjust to your backend server's address
+        const response = await fetch("https://dipmandal303.pythonanywhere.com/start_voice_assistant");  // Adjust to your backend server's address
         if (!response.ok) {  // Check if the response is successful (status 200-299)
             throw new Error(`HTTP error! status: ${response.status}`);
         }
