@@ -5,7 +5,7 @@ document.getElementById("startButton").addEventListener("click", async function(
 
 async function fetchResponse() {
     try {
-        const response = await fetch("http://127.0.0.1:5000/start_voice_assistant");  // Adjust to your backend server's address
+        const response = await fetch("https://www.pythonanywhere.com/user/dipmandal303/webapps/#id_dipmandal303_pythonanywhere_com");  // Adjust to your backend server's address
         const data = await response.json();
         return data.response;  // Assuming the JSON response contains "response" key
     } catch (error) {
