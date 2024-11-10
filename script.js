@@ -33,7 +33,7 @@ async function startAssistant() {
     animationDiv.classList.add("active"); // Start animation
     
     try {
-        const response = await fetch("http://127.0.0.1:5000/start_voice_assistant");
+        const response = await fetch("http://127.0.0.1:8080/start_voice_assistant");
         if (!response.ok) throw new Error("Running...");
 
         const data = await response.json();
@@ -59,7 +59,7 @@ async function stopAssistant() {
     animationDiv.classList.remove("active"); // Stop animation
     
     try {
-        const response = await fetch("http://127.0.0.1:5000/stop_voice_assistant");
+        const response = await fetch("http://127.0.0.1:8080/stop_voice_assistant");
         if (!response.ok) throw new Error("Not Running!!!");
 
         const data = await response.json();
