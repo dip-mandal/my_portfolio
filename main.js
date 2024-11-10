@@ -29,7 +29,7 @@ function createWindow() {
 
 // Start the Python backend when Electron starts
 app.whenReady().then(() => {
-    pythonProcess = spawn('python', ['backend/main.py']); // Update with your main.py path
+    pythonProcess = spawn('python', ['main.py']); // Update with your main.py path
 
     pythonProcess.stdout.on('data', (data) => {
         console.log(`Python stdout: ${data}`);
