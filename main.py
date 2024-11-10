@@ -57,8 +57,6 @@ def stop_voice_assistant():
     global assistant_running
     if assistant_running:
         assistant_running = False
-        if assistant_thread:
-            assistant_thread.join()  # Ensure the thread finishes before proceeding
         return jsonify(message="The assistant has been stopped.")
     else:
         return jsonify(message="The assistant is not running.")
