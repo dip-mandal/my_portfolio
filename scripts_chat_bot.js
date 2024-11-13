@@ -26,7 +26,7 @@ function sendMessage() {
 function getBotResponse(message) {
     const chatBox = document.getElementById("chat-box");
 
-    fetch('https://dipmandal303.pythonanywhere.com/get-response', {
+    fetch('https://dipmandal303.pythonanywhere.com/', {  // Updated to root URL
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
