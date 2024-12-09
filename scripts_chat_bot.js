@@ -1,77 +1,50 @@
-// Function to send the user's message to the backend
 function sendMessage() {
     const userInput = document.getElementById("user-input");
     const chatBox = document.getElementById("chat-box");
     const message = userInput.value.trim();
 
     if (message) {
-        // Display the user's message in the chat box
         const userMessage = document.createElement("div");
         userMessage.className = "message user";
         userMessage.innerText = message;
         chatBox.appendChild(userMessage);
-
-        // Scroll to the bottom of the chat
         chatBox.scrollTop = chatBox.scrollHeight;
-
-        // Clear the input field
         userInput.value = "";
 
-        // Call getBotResponse to get the bot's response from the backend
         getBotResponse(message);
     }
 }
 
-// Function to fetch the bot's response from the backend
 function getBotResponse(message) {
     const chatBox = document.getElementById("chat-box");
 
-    fetch('https://dipmandal303.pythonanywhere.com/', {  // Updated to root URL
+    fetch('https://dipmandal303.pythonanywhere.com/', {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ message })  // Send the message to the backend
+        body: JSON.stringify({ message }),
     })
-    .then(response => {
-        // Check if the response is ok (status 200)
-        if (response.ok) {
-            return response.text();  // Return the response as plain text
-        } else {
-            throw new Error('Network response was not ok');
-        }
-    })
+    .then(response => response.ok ? response.text() : Promise.reject('Error'))
     .then(data => {
-        // Display the bot's response in the chat box
         const botMessage = document.createElement("div");
         botMessage.className = "message bot";
-        botMessage.innerText = data;  // Set the response as the bot's message
+        botMessage.innerText = data;
         chatBox.appendChild(botMessage);
-
-        // Scroll to the bottom of the chat
         chatBox.scrollTop = chatBox.scrollHeight;
     })
-    .catch(error => {
-        console.error('Error:', error);
-        
-        // Display an error message if something goes wrong
+    .catch(() => {
         const errorMessage = document.createElement("div");
         errorMessage.className = "message bot error";
         errorMessage.innerText = "Sorry, there was an error with the response.";
         chatBox.appendChild(errorMessage);
-
-        // Scroll to the bottom of the chat
         chatBox.scrollTop = chatBox.scrollHeight;
     });
 }
 
-// Attach event listener for Enter key press
 document.getElementById("user-input").addEventListener("keypress", function (event) {
     if (event.key === "Enter") {
-        event.preventDefault(); // Prevent default form submission
-        sendMessage(); // Call the sendMessage function
+        event.preventDefault();
+        sendMessage();
     }
 });
-
-// Optional: Attach event listener for the Send button
-document.getElementById("send-button").addEventListener("click", sendMessage);
