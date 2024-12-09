@@ -64,3 +64,14 @@ function getBotResponse(message) {
         chatBox.scrollTop = chatBox.scrollHeight;
     });
 }
+
+// Attach event listener for Enter key press
+document.getElementById("user-input").addEventListener("keypress", function (event) {
+    if (event.key === "Enter") {
+        event.preventDefault(); // Prevent default form submission
+        sendMessage(); // Call the sendMessage function
+    }
+});
+
+// Optional: Attach event listener for the Send button
+document.getElementById("send-button").addEventListener("click", sendMessage);
