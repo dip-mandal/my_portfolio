@@ -11,14 +11,14 @@ function createWindow() {
         width: 800,
         height: 600,
         webPreferences: {
-            preload: path.join(__dirname, 'preload.js'), // Optional, if you use preload scripts
+            preload: path.join(__dirname, 'scripts_voice.js'), // Optional, if you use preload scripts
             nodeIntegration: true, // Allows integration with Node.js
             contextIsolation: false, // To use Electron with Node modules
         },
     });
 
     // Load your app's main HTML file
-    mainWindow.loadFile('index_ai.html'); // Update with your file path
+    mainWindow.loadFile('index_voice.html'); // Update with your file path
 
     // Handle window close event to terminate Python process
     mainWindow.on('closed', () => {
