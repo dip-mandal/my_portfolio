@@ -1,3 +1,4 @@
+/* General styling */
 body {
     display: flex;
     justify-content: center;
@@ -6,6 +7,12 @@ body {
     margin: 0;
     font-family: Arial, sans-serif;
     background-color: #000000a8;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dark-mode {
+    background-color: #ffffff;
+    color: #000000;
 }
 
 .chat-container {
@@ -23,11 +30,11 @@ body {
     overflow-y: scroll;
     display: flex;
     flex-direction: column;
-    scrollbar-width: none; /* Hides scrollbar in Firefox */
+    scrollbar-width: none;
 }
 
 .chat-box::-webkit-scrollbar {
-    display: none; /* Hides scrollbar in Chrome, Safari, and Opera */
+    display: none;
 }
 
 .message {
@@ -65,9 +72,121 @@ input[type="text"] {
 
 button {
     background-color: #42da3c;
+    
     color: #fff;
     border: none;
     padding: 0 20px;
     cursor: pointer;
     font-size: 16px;
+}
+button:hover {
+    background-color: #ff5722;
+    color: #fff;
+}
+
+button#voice-button {
+    background-color: #ff5722;
+    margin-left: 5px;
+}
+button#voice-button:hover {
+    background-color: #42da3c;
+    color: #fff;
+}
+
+button#dark-mode-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 50%;
+    font-size: 18px;
+}
+button#dark-mode-btn:hover {
+    background-color: #c6f8c4;
+    color: #fff;
+}
+
+/* Voice listening animation */
+.voice-animation {
+    position: absolute;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 60px;
+    background-color: rgba(255, 87, 34, 0.5);
+    border-radius: 50%;
+    display: none;
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: translateX(-50%) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(-50%) scale(1.5);
+        opacity: 0;
+    }
+}
+
+/* Dark mode styling */
+body.dark-mode {
+    background-color: #f4f4f4;
+    color: #1a1a1a;
+}
+
+body.dark-mode .chat-container {
+    background-color: #e0e0e0;
+}
+
+body.dark-mode button {
+    background-color: #7de778c9;
+    color: #fff;
+}
+body.dark-mode button#dark-mode-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #ffffff;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 50%;
+    font-size: 18px;
+}
+body.dark-mode button:hover {
+    background-color: #42da3c;
+    color: #fff;
+}
+body.dark-mode button#dark-mode-btn:hover {
+    background-color: #000000;
+    color: #fff;
+}
+body.dark-mode button#voice-button {
+    background-color: #f48b6c;
+    margin-left: 5px;
+}
+body.dark-mode button#voice-button:hover {
+    background-color: #7ee778;
+    color: #fff;
+}
+body.dark-mode input[type="text"] {
+    flex: 1;
+    padding: 15px;
+    border: none;
+    outline: none;
+    color: rgb(0, 0, 0);
+    background-color: #b0aeaeb2;
+}
+body.dark-mode .message.user {
+    background-color: #45cfea97;
+    color: #fff;
+    align-self: flex-end;
 }
