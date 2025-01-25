@@ -27,7 +27,12 @@ function getBotResponse(message) {
         },
         body: JSON.stringify({ message }),
     })
-    .then(response => response.ok ? response.text() : Promise.reject('Error'))
+    .then(response => {
+        if (response.ok) {
+            return response.text();
+        }
+        throw new Error('Error fetching bot response');
+    })
     .then(data => {
         const botMessage = document.createElement("div");
         botMessage.className = "message bot";
@@ -48,14 +53,14 @@ function getBotResponse(message) {
 function startVoiceRecognition() {
     const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
     const voiceAnimation = document.getElementById("voice-animation");
-    recognition.lang = "en-US";
+    const userInput = document.getElementById("user-input");
 
-    recognition.start();
+    recognition.lang = "en-US";
     voiceAnimation.style.display = "block"; // Show animation
+    recognition.start();
 
     recognition.onresult = function (event) {
         const speechResult = event.results[0][0].transcript;
-        const userInput = document.getElementById("user-input");
         userInput.value = speechResult;
         sendMessage();
         voiceAnimation.style.display = "none"; // Hide animation
@@ -75,9 +80,10 @@ function startVoiceRecognition() {
 // Dark mode toggle
 document.getElementById("dark-mode-btn").addEventListener("click", () => {
     document.body.classList.toggle("dark-mode");
+});
 
-    // press enter
-    document.getElementById("user-input").addEventListener("keypress", function (event) {
+// Trigger sendMessage on pressing Enter
+document.getElementById("user-input").addEventListener("keypress", function (event) {
     if (event.key === "Enter") {
         event.preventDefault();
         sendMessage();
