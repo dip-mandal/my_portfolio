@@ -75,4 +75,11 @@ function startVoiceRecognition() {
 // Dark mode toggle
 document.getElementById("dark-mode-btn").addEventListener("click", () => {
     document.body.classList.toggle("dark-mode");
+
+    // press enter
+    document.getElementById("user-input").addEventListener("keypress", function (event) {
+    if (event.key === "Enter") {
+        event.preventDefault();
+        sendMessage();
+    }
 });
