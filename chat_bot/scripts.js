@@ -82,10 +82,10 @@ document.getElementById("dark-mode-btn").addEventListener("click", () => {
     document.body.classList.toggle("dark-mode");
 });
 
-// Trigger sendMessage on pressing Enter
-// document.getElementById("user-input").addEventListener("keypress", function (event) {
-//     if (event.key === "Enter") {
-//         event.preventDefault();
-//         sendMessage();
-//     }
-// });
+// Send message on Enter key press
+document.getElementById("user-input").addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+        sendMessage();
+        event.preventDefault(); // Prevent adding a newline
+    }
+});
