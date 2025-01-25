@@ -83,9 +83,9 @@ document.getElementById("dark-mode-btn").addEventListener("click", () => {
 });
 
 // Trigger sendMessage on pressing Enter
-document.getElementById("user-input").addEventListener("keypress", function (event) {
-    if (event.key === "Enter") {
-        event.preventDefault();
-        sendMessage();
-    }
-});
+// document.getElementById("user-input").addEventListener("keypress", function (event) {
+//     if (event.key === "Enter") {
+//         event.preventDefault();
+//         sendMessage();
+//     }
+// });
