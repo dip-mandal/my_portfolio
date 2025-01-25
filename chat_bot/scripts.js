@@ -84,8 +84,10 @@ document.getElementById("dark-mode-btn").addEventListener("click", () => {
 
 // Send message on Enter key press
 document.getElementById("user-input").addEventListener("keydown", (event) => {
+    console.log("Key pressed:", event.key);
     if (event.key === "Enter") {
+        event.preventDefault();
         sendMessage();
-        event.preventDefault(); // Prevent adding a newline
     }
 });
+
