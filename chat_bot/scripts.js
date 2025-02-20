@@ -36,7 +36,23 @@ function getBotResponse(message) {
     .then(data => {
         const botMessage = document.createElement("div");
         botMessage.className = "message bot";
-        botMessage.innerText = data;
+
+        // Create a span to wrap the bot response text
+        const botText = document.createElement("span");
+        botText.className = "bot-text";
+        botText.innerText = data;
+
+        // Create the speaker icon next to the text
+        const speakerIcon = document.createElement("span");
+        speakerIcon.innerHTML = " 🔊"; // Add space before icon for proper spacing
+        speakerIcon.classList.add("speaker-icon");
+        speakerIcon.onclick = () => speakText(data);
+        botMessage.appendChild(speakerIcon);
+        botMessage.appendChild(botText);
+
+        // Append both elements inline
+        // botMessage.appendChild(speakerIcon);
+
         chatBox.appendChild(botMessage);
         chatBox.scrollTop = chatBox.scrollHeight;
     })
@@ -47,6 +63,12 @@ function getBotResponse(message) {
         chatBox.appendChild(errorMessage);
         chatBox.scrollTop = chatBox.scrollHeight;
     });
+}
+
+// Function to speak text aloud
+function speakText(text) {
+    const speech = new SpeechSynthesisUtterance(text);
+    speechSynthesis.speak(speech);
 }
 
 // Voice recognition function with animation
@@ -90,4 +112,3 @@ document.getElementById("user-input").addEventListener("keydown", (event) => {
         sendMessage();
     }
 });
-
