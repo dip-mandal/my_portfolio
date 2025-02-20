@@ -190,3 +190,15 @@ body.dark-mode .message.user {
     color: #fff;
     align-self: flex-end;
 }
+
+/* Initially hide speaker icon */
+.speaker-icon {
+    margin-left: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    display: none; /* Initially hidden */
+}
+/* Show speaker icon when hovering over the bot message */
+.bot:hover .speaker-icon {
+    display: inline; /* Show on hover */
+}
