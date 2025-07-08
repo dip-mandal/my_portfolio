@@ -20,7 +20,7 @@ function sendMessage() {
 function getBotResponse(message) {
     const chatBox = document.getElementById("chat-box");
 
-    fetch('https://dipmandal303.pythonanywhere.com/', {
+    fetch('https://a261bf6972bf.ngrok-free.app/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
